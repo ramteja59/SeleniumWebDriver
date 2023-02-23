@@ -33,7 +33,7 @@ public void singleuser() {
 	System.out.println(rep.asString());
 
 }
-@Test
+@Test (enabled = true)
 public void createuser( ) {
 	baseURI="https://reqres.in/api/users";
 	JSONObject js=new JSONObject();
@@ -44,8 +44,19 @@ public void createuser( ) {
 	given().body(js.toJSONString()).when().post(baseURI).then().statusCode(201).log().all();
 	System.out.println(js.toJSONString());
 }
-@Test
-public void update() {
-	baseURI="https://"
+@Test(enabled = false)
+public void updateresource() {
+	JSONObject js=new JSONObject();
+	  js.put("name", "navayugan");
+	  js.put("job", "CEO");
+	  given().body(js.toJSONString()).when().put("https://reqres.in/api/users/2").then().statusCode(200).log().all();
 }
+@Test(enabled = false)
+public void deleteresource() {
+	  given().delete("https://reqres.in/api/users/2").then().statusCode(204).log().all();
 }
+
+
+
+}
+
